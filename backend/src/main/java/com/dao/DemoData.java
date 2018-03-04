@@ -3,6 +3,7 @@ package com.dao;
 import com.Application;
 import com.entity.Chat;
 import com.entity.ChatUserRelation;
+import com.entity.Message;
 import com.entity.User;
 import org.slf4j.Logger;
 
@@ -48,6 +49,15 @@ public class DemoData {
         Application.chatToUserRepository.save(new ChatUserRelation(chat1id, hero1id));
         Application.chatToUserRepository.save(new ChatUserRelation(chat1id, hero3id));
 
+        // add some old messages to active chats
+        Application.messageRepository.save(new Message(chat0id, hero2id, "Thank you!", "12.03.2018:11.06.55"));
+        Application.messageRepository.save(new Message(chat0id, hero3id, "Welcome to place we discuss our plans now",
+                "12.03.2018:11.06.56"));
+
+        Application.messageRepository.save(new Message(chat1id, hero3id, "We are not like the others",
+                "12.03.2018:11.10.45"));
+        Application.messageRepository.save(new Message(chat1id, hero1id, "There are no 'we'",
+                "12.03.2018:11.10.45"));
     }
 
 }
