@@ -1,5 +1,7 @@
 package com;
 
+import com.dao.ChatRepository;
+import com.dao.ChatToUserRepository;
 import com.dao.DemoData;
 import com.dao.UserRepository;
 import org.slf4j.Logger;
@@ -28,6 +30,16 @@ public class Application {
     public static UserRepository userRepository;
 
     /**
+     * Chat's repository
+     */
+    public static ChatRepository chatRepository;
+
+    /**
+     * Relation chat to user repository
+     */
+    public static ChatToUserRepository chatToUserRepository;
+
+    /**
      * App initialization
      * @param args command line arguments
      */
@@ -41,10 +53,14 @@ public class Application {
      * @return runner for Spring Boot
      */
     @Bean
-    public CommandLineRunner demo(UserRepository userRepository) {
+    public CommandLineRunner demo(UserRepository userRepository, ChatRepository chatRepository,
+                                  ChatToUserRepository chatToUserRepository) {
         log.info("App initialization started");
         return (args) -> {
             Application.userRepository = userRepository;
+            Application.chatRepository = chatRepository;
+            Application.chatToUserRepository = chatToUserRepository;
+
             log.info("Repositories initialized");
             DemoData.init(log);
             log.info("Demo data uploaded");
