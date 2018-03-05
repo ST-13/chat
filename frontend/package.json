@@ -1,0 +1,15 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "reinstall": "npm cache clean --force && rm -rf node_modules && npm install"
+  },
+  "author": "Stepan Malkhasyan",
+  "license": "MIT",
+  "devDependencies": {
+    "local-web-server": "^2.4.0"
+  }
+}
