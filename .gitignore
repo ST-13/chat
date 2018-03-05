@@ -1,2 +1,9 @@
+# idea
 .idea
-backend/target
+*.iml
+
+# maven
+backend/target/
+
+# npm
+frontend/node-modules
