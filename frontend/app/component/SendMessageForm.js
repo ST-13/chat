@@ -32,7 +32,8 @@ export class SendMessageForm extends Form {
         xhr.send(JSON.stringify({
             "chatId": this.chatId,
             "senderId": this.userId,
-            "text": message
+            "text": message,
+            "time": new Date()
         }));
 
         xhr.onreadystatechange = () => {

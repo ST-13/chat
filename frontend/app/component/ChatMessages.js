@@ -5,6 +5,8 @@ export class ChatMessages extends Component {
     constructor (targetElement, store) {
         super(targetElement, store, 'ul');
         this.element.className = 'chat-messages';
+        this.userId = null;
+        this.nickname = null;
         this.subscribe();
     }
 
@@ -21,7 +23,8 @@ export class ChatMessages extends Component {
     }
 
     load (chatId) {
-        this.startPolling(chatId);
+        this.getChatMessages(chatId);
+        // this.startPolling(chatId);
     }
 
     startPolling (chatId) {
@@ -73,8 +76,36 @@ export class ChatMessages extends Component {
     }
 
     getMessagesHtml() {
+
         return this.store.getRange()
-            .map((message) => `<li class="chat_message">${message.senderId}: ${message.text}</li>`)
+            .map((message) => {
+                let chatMessageInfoAlignClass,
+                    messageTextAlignClass,
+                    userNickname,
+                    senderId;
+
+                if (this.userId === message.senderId) {
+                    messageTextAlignClass = 'message-text-right';
+                    chatMessageInfoAlignClass = 'chat-message-info-right';
+                    userNickname = this.nickname;
+                    senderId = '';
+                } else {
+                    messageTextAlignClass = 'message-text-left';
+                    chatMessageInfoAlignClass = 'chat-message-info-left';
+                    userNickname = 'User with id ';
+                    senderId = message.senderId
+                }
+
+                return `
+                    <li class="chat-message">
+                        <div class="chat-message-info ${chatMessageInfoAlignClass}">
+                            <span class="message-sender-info">${userNickname}${senderId}</span>
+                            <span class="message-time-info">${message.time}</span>
+                        </div>
+                        <div class="chat-message-text ${messageTextAlignClass}">${message.text}</div>
+                    </li>
+                `
+            })
             .join(`<br>`);
     }
 

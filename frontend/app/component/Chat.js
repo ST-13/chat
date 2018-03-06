@@ -36,6 +36,8 @@ export class Chat extends Component {
     loadContent (userInfo) {
         this.render();
         this.chatList.load(userInfo.id);
+        this.chatMessages.userId = userInfo.id;
+        this.chatMessages.nickname = userInfo.nickname;
         this.sendMessageForm.userId = userInfo.id;
     }
 
