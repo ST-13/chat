@@ -26,6 +26,9 @@ export class SendMessageForm extends Form {
     postChatMessage (message) {
         const url = 'http://localhost:8080/sendMessage';
         const xhr = new XMLHttpRequest();
+        const date = new Date();
+        const formatedDate = ('0' + date.getDate()).slice(-2) + '.' + (date.getMonth() + 1) + '.' + date.getFullYear()
+            + ':' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds();
 
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -33,7 +36,7 @@ export class SendMessageForm extends Form {
             "chatId": this.chatId,
             "senderId": this.userId,
             "text": message,
-            "time": new Date()
+            "time": formatedDate
         }));
 
         xhr.onreadystatechange = () => {

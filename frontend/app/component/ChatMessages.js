@@ -24,7 +24,7 @@ export class ChatMessages extends Component {
 
     load (chatId) {
         this.getChatMessages(chatId);
-        // this.startPolling(chatId);
+        this.startPolling(chatId);
     }
 
     startPolling (chatId) {
