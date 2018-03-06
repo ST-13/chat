@@ -4,7 +4,7 @@ export class MessagesStore extends Store {
 
     constructor () {
         super();
-        this.loadEventName = 'messagesStoreLoad';
+        this.loadEventName = 'messagesStoreLoaded';
     }
 
 }

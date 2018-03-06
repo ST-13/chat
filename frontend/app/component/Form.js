@@ -3,7 +3,7 @@ import {Component} from "./Component.js";
 export class Form extends Component {
 
     constructor (targetElement) {
-        super(targetElement);
+        super(targetElement, null, 'form');
         this.element.addEventListener('submit', this.onSubmit.bind(this));
     }
 
@@ -28,4 +28,5 @@ export class Form extends Component {
 
         return formData;
     }
+
 }
