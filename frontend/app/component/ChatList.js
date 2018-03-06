@@ -3,7 +3,8 @@ import {Component} from "./Component.js";
 export class ChatList extends Component {
 
     constructor (targetElement, store) {
-        super(targetElement, store);
+        super(targetElement, store, 'ul');
+        this.element.className = 'chat-list';
         this.subscribe();
     }
 
@@ -66,16 +67,14 @@ export class ChatList extends Component {
 
     render () {
         this.element.innerHTML = `
-            <div class="chat-list">
-                ${this.getChatHtml()}
-            </div>
+            ${this.getChatHtml()}
         `;
         this.targetElement.appendChild(this.element);
     }
 
     getChatHtml () {
         return this.store.getRange()
-            .map((chat) => `<span data-chatid="${chat.id}">${chat.name}</span>`)
+            .map((chat) => `<li class="chat-list-item" data-chatid="${chat.id}">${chat.name}</li>`)
             .join(`\n`);
     }
 

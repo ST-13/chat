@@ -4,6 +4,7 @@ export class SendMessageForm extends Form {
 
     constructor (targetElement) {
         super(targetElement);
+        this.element.className = 'send-message-form';
         this.subscribe();
     }
 
@@ -45,16 +46,8 @@ export class SendMessageForm extends Form {
 
     render () {
         this.element.innerHTML = `
-            <div class="chat-message clearfix">
-
-                <textarea data-type="message" name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                        
-                <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                <i class="fa fa-file-image-o"></i>
-                
-                <button type="submit">Send</button>
-            
-            </div>
+            <textarea class="message-text-area" data-type="message" name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+            <button class="send-button" type="submit">Send</button>
         `;
         this.targetElement.appendChild(this.element);
     }

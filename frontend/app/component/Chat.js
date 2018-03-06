@@ -10,9 +10,16 @@ export class Chat extends Component {
     constructor (targetElement) {
         super(targetElement);
 
+        this.element.className = 'chat';
+
+        this.chatMessagesPanel = document.createElement('div');
+        this.chatMessagesPanel.className = 'chat-messages-panel';
+
+        this.element.appendChild(this.chatMessagesPanel);
+
         this.chatList = new ChatList(this.element, new ChatListStore());
-        this.chatMessages = new ChatMessages(this.element, new MessagesStore());
-        this.sendMessageForm = new SendMessageForm(this.element);
+        this.chatMessages = new ChatMessages(this.chatMessagesPanel, new MessagesStore());
+        this.sendMessageForm = new SendMessageForm(this.chatMessagesPanel);
 
         this.subscribe();
     }

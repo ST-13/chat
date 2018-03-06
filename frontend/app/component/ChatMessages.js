@@ -3,7 +3,8 @@ import {Component} from "./Component.js";
 export class ChatMessages extends Component {
 
     constructor (targetElement, store) {
-        super(targetElement, store);
+        super(targetElement, store, 'ul');
+        this.element.className = 'chat-messages';
         this.subscribe();
     }
 
@@ -63,16 +64,14 @@ export class ChatMessages extends Component {
 
     render () {
         this.element.innerHTML = `
-            <div class="chat-messages">
-                ${this.getMessagesHtml()}
-            </div>
+            ${this.getMessagesHtml()}
         `;
         this.targetElement.appendChild(this.element);
     }
 
     getMessagesHtml() {
         return this.store.getRange()
-            .map((message) => `<span class="chat_message">${message.senderId}: ${message.text}</span>`)
+            .map((message) => `<li class="chat_message">${message.senderId}: ${message.text}</li>`)
             .join(`<br>`);
     }
 
