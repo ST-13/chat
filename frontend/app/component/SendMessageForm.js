@@ -39,7 +39,7 @@ export class SendMessageForm extends Form {
             }
 
             if (xhr.status !== 200) {
-                alert( xhr.status + ': ' + xhr.statusText );
+                console.error( xhr.status + ': ' + xhr.statusText );
             }
         };
     }

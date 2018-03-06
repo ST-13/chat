@@ -46,13 +46,13 @@ export class ChatMessages extends Component {
             }
 
             if (xhr.status !== 200) {
-                alert( xhr.status + ': ' + xhr.statusText );
+                console.error( xhr.status + ': ' + xhr.statusText );
             } else {
                 try {
                     const chatMessages = JSON.parse(xhr.responseText);
                     this.onGetChatMessagesSuccess(chatMessages);
                 } catch (e) {
-                    alert( "Некорректный ответ " + e.message );
+                    console.error( "Некорректный ответ " + e.message );
                 }
             }
         };

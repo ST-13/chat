@@ -49,13 +49,13 @@ export class ChatList extends Component {
             }
 
             if (xhr.status !== 200) {
-                alert( xhr.status + ': ' + xhr.statusText );
+                console.error( xhr.status + ': ' + xhr.statusText );
             } else {
                 try {
                     const chatList = JSON.parse(xhr.responseText);
                     this.onGetUserChatListSuccess(chatList);
                 } catch (e) {
-                    alert( "Некорректный ответ " + e.message );
+                    console.error( "Некорректный ответ " + e.message );
                 }
             }
         };
