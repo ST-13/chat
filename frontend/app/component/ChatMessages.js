@@ -25,11 +25,14 @@ export class ChatMessages extends Component {
     }
 
     startPolling (chatId) {
+        this.stopPolling();
         this.intervalId = setInterval(this.getChatMessages.bind(this, chatId), 1000);
     }
 
     stopPolling () {
-        clearInterval(this.intervalId);
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
     }
 
     getChatMessages (chatId) {

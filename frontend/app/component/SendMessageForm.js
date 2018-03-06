@@ -5,6 +5,8 @@ export class SendMessageForm extends Form {
     constructor (targetElement) {
         super(targetElement);
         this.element.className = 'send-message-form';
+        this.userId = null;
+        this.chatId = null;
         this.subscribe();
     }
 
@@ -28,8 +30,8 @@ export class SendMessageForm extends Form {
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
-            "chatId": 1,
-            "senderId": 1,
+            "chatId": this.chatId,
+            "senderId": this.userId,
             "text": message
         }));
 

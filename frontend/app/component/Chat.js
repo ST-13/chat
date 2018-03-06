@@ -30,11 +30,13 @@ export class Chat extends Component {
 
     onChatSelected (event) {
         this.chatMessages.load(event.detail.chatId);
+        this.sendMessageForm.chatId = event.detail.chatId;
     }
 
     loadContent (userInfo) {
         this.render();
         this.chatList.load(userInfo.id);
+        this.sendMessageForm.userId = userInfo.id;
     }
 
     render () {
