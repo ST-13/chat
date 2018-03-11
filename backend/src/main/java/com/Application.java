@@ -25,21 +25,6 @@ public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     /**
-     * User's repository
-     */
-    public static UserRepository userRepository;
-
-    /**
-     * Chat's repository
-     */
-    public static ChatRepository chatRepository;
-
-    /**
-     * Messages's repository
-     */
-    public static MessageRepository messageRepository;
-
-    /**
      * App initialization
      * @param args command line arguments
      */
@@ -49,20 +34,18 @@ public class Application {
 
     /**
      * DataBase initializer
-     * @param userRepository repository for user from Spring's context
+     * @param userRepository    user's repository
+     * @param chatRepository    chat's repository
+     * @param messageRepository messages's repository
      * @return runner for Spring Boot
      */
     @Bean
-    public CommandLineRunner demo(UserRepository userRepository, ChatRepository chatRepository,
+    public CommandLineRunner initDemoData(UserRepository userRepository, ChatRepository chatRepository,
                                   MessageRepository messageRepository) {
         log.info("App initialization started");
         return (args) -> {
-            Application.userRepository = userRepository;
-            Application.chatRepository = chatRepository;
-            Application.messageRepository = messageRepository;
-
             log.info("Repositories initialized");
-            DemoData.init(log);
+            new DemoDataInitializer(userRepository, chatRepository, messageRepository).init(log);
             log.info("Demo data uploaded");
         };
     }
