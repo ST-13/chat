@@ -1,13 +1,13 @@
-package com.dao;
+package com.jpa.repository;
 
-import com.entity.Chat;
-import org.springframework.data.repository.CrudRepository;
+import com.jpa.model.Chat;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Repository for table chat
  * Created by Aesonne on 04.03.2018
  */
-public interface ChatRepository extends CrudRepository<Chat, Long> {
+public interface ChatRepository extends JpaRepository<Chat, Long> {
 
     /**
      * Find chat by name. Used for demo-data creation

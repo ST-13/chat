@@ -1,13 +1,13 @@
-package com.dao;
+package com.jpa.repository;
 
-import com.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import com.jpa.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Repository for table user
  * Created by Aesonne on 04.03.2018
  */
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * Find user by nickname

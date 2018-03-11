@@ -1,6 +1,9 @@
 package com;
 
-import com.dao.*;
+import com.jpa.*;
+import com.jpa.repository.ChatRepository;
+import com.jpa.repository.MessageRepository;
+import com.jpa.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
- * Spring configuration for web services
+ * Spring configuration
  * Created by Aesonne on 04.03.2018
  */
 @SpringBootApplication
@@ -32,11 +35,6 @@ public class Application {
     public static ChatRepository chatRepository;
 
     /**
-     * Relation chat to user repository
-     */
-    public static ChatToUserRepository chatToUserRepository;
-
-    /**
      * Messages's repository
      */
     public static MessageRepository messageRepository;
@@ -56,12 +54,11 @@ public class Application {
      */
     @Bean
     public CommandLineRunner demo(UserRepository userRepository, ChatRepository chatRepository,
-                                  ChatToUserRepository chatToUserRepository, MessageRepository messageRepository) {
+                                  MessageRepository messageRepository) {
         log.info("App initialization started");
         return (args) -> {
             Application.userRepository = userRepository;
             Application.chatRepository = chatRepository;
-            Application.chatToUserRepository = chatToUserRepository;
             Application.messageRepository = messageRepository;
 
             log.info("Repositories initialized");

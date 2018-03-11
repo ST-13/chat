@@ -1,6 +1,8 @@
-package com.entity;
+package com.jpa.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User data entity
@@ -14,13 +16,24 @@ public class User {
      * Identifier
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**
      * Nickname and login
      */
+    @Column(unique = true)
     private String nickname;
+
+    /**
+     * User's chats
+     */
+    @ManyToMany(cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "users")
+    private Set<Chat> chats = new HashSet<>();
 
     /**
      * Constructor for JPA only
@@ -50,4 +63,13 @@ public class User {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public Set<Chat> getChats() {
+        return chats;
+    }
+
+    public void setChats(Set<Chat> chats) {
+        this.chats = chats;
+    }
+
 }
