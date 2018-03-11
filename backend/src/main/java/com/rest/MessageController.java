@@ -1,7 +1,7 @@
 package com.rest;
 
 import com.Application;
-import com.entity.Message;
+import com.jpa.model.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
